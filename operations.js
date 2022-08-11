@@ -16,4 +16,4 @@ function read(connection, callback){
     });
 }
 
-module.exports = {insert};
+module.exports = {insert, read};

@@ -2,7 +2,7 @@ const express = require ('express');
 const app = express();
 const mysql = require('mysql');
 
-const {insert} = require('./operations');
+const {insert, read} = require('./operations');
 
 app.use(express.json());
 
@@ -18,7 +18,6 @@ connection.connect((err)=>{
     console.log("connected to database");
 });
 
-
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
@@ -27,6 +26,13 @@ app.get("/insert", (req, res) => {
     insert(connection, {name:'', quantity: '', unitWeight:'', totalWeight:''}, (result) => {
         res,json(result);
     });
+});
+
+//vamos por aqui en la creacion del pool de conexiones minuto 12:47
+app.get("/read",(req,res)=>{
+    read(connection,(result)=>{
+        res.json(result);
+    })
 });
 
 app.listen(3000,()=>{
