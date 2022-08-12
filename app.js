@@ -2,11 +2,18 @@ const express = require ('express');
 const app = express();
 const mysql = require('mysql');
 
-const {insert, read} = require('./operations');
+const {insert, read, update} = require('./operations');
 
 app.use(express.json());
 
 const connection = mysql.createConnection({
+    host: 'us-cdbr-east-05.cleardb.net',
+    user: 'b7ad243fb2b7f4',
+    password: '3333934d',
+    database: 'heroku_7d4ec896398f351'
+});
+
+const pool = mysql.createPool({
     host: 'us-cdbr-east-05.cleardb.net',
     user: 'b7ad243fb2b7f4',
     password: '3333934d',
@@ -28,7 +35,6 @@ app.get("/insert", (req, res) => {
     });
 });
 
-//vamos por aqui en la creacion del pool de conexiones minuto 12:47
 app.get("/read",(req,res)=>{
     read(connection,(result)=>{
         res.json(result);
@@ -38,3 +44,11 @@ app.get("/read",(req,res)=>{
 app.listen(3000,()=>{
     console.log("Servidor en el puerto 3000");
 });
+
+// Aqui es necesario escribir el codigo para que haga el update de manera dinamica
+app.get("/update", (req, res) => {
+    update(connection, {id: }, (result) => {
+        read.json(result);
+    });
+});
+

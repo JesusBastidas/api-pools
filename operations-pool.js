@@ -1,6 +1,6 @@
 const mysql = require ('mysql');
 
-function insert(connection, data, callback){
+function insertPool(pool, data, callback){
     let insertQuery = "INSERT INTO products (name, quantity, unitWeight, totalWeight) VALUES (?,?,?,?)";
     let query = mysql.format(insertQuery, [data.name, data.quantity, data.unitWeight, data.totalWeight]);
     
@@ -12,7 +12,7 @@ function insert(connection, data, callback){
     });
 };
 
-function read(connection, callback){
+function readPool(pool, callback){
     connection.query("SELECT * FROM products", function (err,result) {
         if (err) throw err;
         callback(result);
@@ -21,7 +21,7 @@ function read(connection, callback){
     });
 };
 
-function update(connection, data, callback){
+function updatePool(pool, data, callback){
     const randomLetters = Math.random().toString(36).substring(7);
     let updateQuery = "UPDATE products SET name = ?, quantity = ?, unitWeight = ?, totalWeight = ? WHERE id = ?";
     let query = mysql.format(updateQuery, [data.name, data.quantity, data.unitWeight, data.totalWeight, data.id]);
@@ -34,7 +34,7 @@ function update(connection, data, callback){
     });
 };
 
-function remove(connection, data, callback){
+function removePool(pool, data, callback){
     let removeQuery = "DELETE FROM products WHERE id = ?";
     let query = mysql.format(removeQuery, [data.id]);
     
@@ -49,4 +49,4 @@ function remove(connection, data, callback){
 
 
 
-module.exports = {insert, read, update};
+module.exports = {insertPool, readPool, updatePool, removePool};
