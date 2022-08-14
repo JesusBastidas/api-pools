@@ -60,27 +60,27 @@ app.get("/read-pool", (req,res)=>{
 
 // Aqui es necesario escribir el codigo para que haga el update de manera dinamica
 app.get("/update", (req, res) => {
-    update(connection, {id: }, (result) => {
+    update(connection, {id:''}, (result) => {
         read.json(result);
     });
 });
 
 //aqui va el update del pool
 app.get("/update-pool", (req,res) => {
-    updatePool (pool, {id: }, (result) => {
+    updatePool (pool, {id:''}, (result) => {
         res.json(result);
     });
 });
 
 app.get("/remove", (req,res)=> {
-    remove(connection, {id: }, (result) => {
+    remove(connection, {id:''}, (result) => {
         res.json(result);
     });
 });
 
 //aqui va el remove del pool
 app.get("/remove-pool", (req,res)=> {
-    removePool (pool, {id: }, (result) => {
+    removePool (pool, {id:''}, (result) => {
         res.json(result);
     });
 });
