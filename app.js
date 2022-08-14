@@ -8,10 +8,10 @@ const {insertPool, readPool, updatePool, removePool} = require('./operations-poo
 app.use(express.json());
 
 const connection = mysql.createConnection({
-    host: 'us-cdbr-east-05.cleardb.net',
-    user: 'b7ad243fb2b7f4',
-    password: '3333934d',
-    database: 'heroku_7d4ec896398f351'
+    host: 'us-cdbr-east-06.cleardb.net',
+    user: 'b6953088f95f6e',
+    password: '34e14534',
+    database: 'heroku_9d2f46857d5c1c3'
 });
 
 const pool = mysql.createPool({
@@ -25,7 +25,6 @@ connection.connect((err)=>{
     if (err) throw err;
     console.log("connected to database");
 });
-
 
 app.get("/", (req, res) => {
     res.send("Hello World");
