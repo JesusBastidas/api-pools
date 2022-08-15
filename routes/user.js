@@ -1,29 +1,17 @@
 const express = require('express');
 const userRouter = express.Router();
-const connection = require('../models/connectionBD');        
+const userSchema = require('../models/user');      
 
 userRouter.get('/user', (req, res) => {
-    connection.query('SELECT * FROM users', (err, rows, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(rows);
-        }
-    });
-    connection.end();
+    userSchema.find().then((data) => res.json(data)).catch((err) => res.json(err));
 });
 
 userRouter.get('/user/:id', (req, res) => {
-    const { id } = req.params;
-    connection.query('SELECT * FROM users WHERE idusers = ?', [id], (err, rows, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(rows);
-        }
-    }
-    );
-    connection.end();
+    userSchema.findById(req.params.id).then((data) => res.json(data)).catch((err) => res.json(err));
+});
+
+userRouter.post('/user', (req, res) => {
+    userSchema(req.body).save().then((data) => res.json(data)).catch((err) => res.json(err));
 });
 
 
