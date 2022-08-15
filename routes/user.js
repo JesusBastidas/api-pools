@@ -13,6 +13,18 @@ userRouter.get('/user', (req, res) => {
     connection.end();
 });
 
+userRouter.get('/user/:id', (req, res) => {
+    const { id } = req.params;
+    connection.query('SELECT * FROM users WHERE idusers = ?', [id], (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(rows);
+        }
+    }
+    );
+    connection.end();
+});
 
 
 module.exports = userRouter;
