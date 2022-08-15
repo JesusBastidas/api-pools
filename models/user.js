@@ -1,25 +1,14 @@
-const mongoose = require('mongoose');
+const connection = require('../models/connectionBD');
 
-const userSchema = mongoose.Schema ({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    pass: {
-        type: String,
-        required: true
-    },
-    rol: {
-        type: String,
-        required: true
+connection.query('SELECT * FROM users', (err, rows) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(rows);
     }
-}, {
-    versionKey: false
 });
 
-module.exports = mongoose.model('user', userSchema);
+connection.end();
+
+
 

@@ -1,9 +1,18 @@
 const express = require('express');
-const userSchema = require('../models/user');
-const userRouter = express.Router();        
+const userRouter = express.Router();
+const connection = require('../models/connectionBD');        
 
-userRouter.route('/user', (req, res) => {
-    userSchema.find().them((data) => res.json(data).catch((err) => res.json(err)));
+userRouter.get('/user', (req, res) => {
+    connection.query('SELECT * FROM users', (err, rows, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(rows);
+        }
+    });
+    connection.end();
 });
+
+
 
 module.exports = userRouter;
