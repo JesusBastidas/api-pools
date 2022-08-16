@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const userRoutes = require('./routes/user');
 const user = require('./models/user');
+const bodyParser = require('body-parser');
 
 
 const app = express();
@@ -12,7 +13,7 @@ require('dotenv').config();
 
 app.use(CORS());
 app.use(bodyParser.json());
-app.use(bosyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Middleware
 app.use(express.json());
