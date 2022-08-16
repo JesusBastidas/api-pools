@@ -14,6 +14,8 @@ app.use(CORS());
 //Middleware
 app.use(express.json());
 app.use('/api', require('./routes/user'));
+app.use('/api', require('./routes/products'));
+app.use('/api', require('./routes/supplies'));
 
 app.get('/',(req,res)=>{
     res.send('Hola caracola');
