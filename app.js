@@ -6,6 +6,7 @@ const user = require('./models/user');
 const bodyParser = require('body-parser');
 
 
+
 const app = express();
 const port = process.env.PORT || 3000;
 const CORS = require('cors');
@@ -34,28 +35,6 @@ app.post('/register',(req,res) => {
             res.status(500).send('Error de registro');
         }else{
             res.status(200).send('Usuario registrado');
-        }
-    })
-});
-
-app.post('/auth', (req,res)=>{
-    console.log(req.body);
-    const {email,pass}=req.body;
-    user.findOne({email},(err,user)=>{
-        if(err){
-            res.status(500).send('Error de autenticación');
-        }else if(!user){
-            res.status(500).send('Usuario no encontrado');
-        }else{
-            user.comparePass(pass,(err, result)=>{
-                if(err){
-                    res.status(500).send('Error de autenticación');
-                }else if(result){
-                    res.status(200).send('Usuario autenticado');
-                }else{
-                    res.status(500).send('Mail o constraseña incorrectos');
-                }
-            })
         }
     })
 });
