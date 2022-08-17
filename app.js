@@ -39,6 +39,7 @@ app.post('/register',(req,res) => {
 });
 
 app.post('/auth', (req,res)=>{
+    console.log(req.body);
     const {email,pass}=req.body;
     user.findOne({email},(err,user)=>{
         if(err){
@@ -57,7 +58,7 @@ app.post('/auth', (req,res)=>{
             })
         }
     })
-})
+});
 
 mongoose.connect(process.env.DB_CONNECTION).then(()=>console.log('conectado a mongo')).catch(err=>console.log(err)); 
 
