@@ -6,6 +6,10 @@ productRouter.get('/products', (req, res) => {
     productSchema.find().then((data) => res.json(data)).catch((err) => res.json(err));
 });
 
+productRouter.get('/products/:id', (req, res) => {
+    productSchema.findById(req.params.id).then((data) => res.json(data)).catch((err) => res.json(err));
+});
+
 productRouter.post('/products', (req, res) => {
     productSchema(req.body).save().then((data) => res.json(data)).catch((err) => res.json(err));
 });
