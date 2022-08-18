@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const supliesSchema = mongoose.Schema({
+const suppliesSchema = mongoose.Schema({
     code: {type: String, required: true},
     name: {type: String, required: true},
     description: {type: String, required: false},
@@ -9,4 +9,4 @@ const supliesSchema = mongoose.Schema({
     unitType: {type: String, required: true}
 });     
 
-module.exports = mongoose.model('suplies', supliesSchema);
+module.exports = mongoose.model('supplies', suppliesSchema);

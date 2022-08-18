@@ -15,11 +15,11 @@ suppliesRouter.post('/supplies', (req, res) => {
 });
 
 suppliesRouter.put('/supplies/:id', (req, res) => {
-    productSchema.findByIdAndUpdate(req.params.id, req.body).then((data) => res.json(data)).catch((err) => res.json(err));
+    suppliesSchema.findByIdAndUpdate(req.params.id, req.body).then((data) => res.json(data)).catch((err) => res.json(err));
 });
 
 suppliesRouter.delete('/supplies/:id', (req, res) => {
-    productSchema.findByIdAndDelete(req.params.id).then((data) => res.json(data)).catch((err) => res.json(err));
+    suppliesSchema.findByIdAndDelete(req.params.id).then((data) => res.json(data)).catch((err) => res.json(err));
 });
 
 module.exports = suppliesRouter;
